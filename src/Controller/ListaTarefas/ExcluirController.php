@@ -23,7 +23,7 @@ class ExcluirController extends AbstractController
         $em->remove($tarefa);
         $em->flush();
 
-        return $this->redirectToRoute("app_inicio");
+        return $this->redirectToRoute("listar");
     }
 }
 ?>

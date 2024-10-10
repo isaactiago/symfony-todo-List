@@ -115,7 +115,7 @@ body{
         <div class="content--add-item">
          <form   action="{{ path('cadastrar') }}" method="POST">
                 <input type="text" id="input-new-task" name="nome" placeholder="Digite sua nova task">
-                <button type="subimit" id="btn-new-task" title="Clique aqui para adicionar uma nova task">
+                <button type="submit" id="btn-new-task" title="Clique aqui para adicionar uma nova task">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
                     </svg>
@@ -126,13 +126,13 @@ body{
         
          <div class="content--body">
          <ol id="to-do-list">
-            {% for valor in tarefa %}
+             {% for valor in tarefa %} 
                     <li>
                         {{ valor.nomeDaTarefa }}
                          <a href="{{ path('excluir_lista', {id: valor.id}) }}" id='btn-ok'><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-lg" viewBox="0       0 16 16"><path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0      1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/></svg></a>
-                    </li>
+                    </li> 
              
-            {% endfor %}
+            {% endfor %} 
          </ol>
         </div>
     </div>

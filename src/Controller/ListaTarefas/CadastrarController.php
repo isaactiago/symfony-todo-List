@@ -18,6 +18,7 @@ class CadastrarController extends AbstractController
     {
     }
 
+   
     #[Route("listar/cadastrar", name:"cadastrar")]
     function cadastrar( Request $request): Response 
     {
@@ -33,10 +34,19 @@ class CadastrarController extends AbstractController
        $tarefa->setNomeDaTarefa($inputNome);
        $tarefa->setStatus(true);
        $this->tarefaRepository->salvar($tarefa);
-       
-        return $this->render("app/app.html.twig",[
-            'tarefa' => $this->tarefaRepository->findAll(),
-        ]);
+
+       return $this->redirectToRoute("listar");
+
     }
+
+    #[Route("listar", name:"listar")]
+    public function show(): Response
+    {
+        return $this->render("app/app.html.twig",
+        [
+            "tarefa" => $this->tarefaRepository->findAll(),
+        ]
+    );
+    }
+
 }
-?>

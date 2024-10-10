@@ -7,7 +7,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class AppController extends AbstractController
 {
-    #[Route("app", name:"app_inicio")]
+    #[Route("app", name:"app")]
     public function show(): Response
     {
         return $this->render("app/app.html.twig");
