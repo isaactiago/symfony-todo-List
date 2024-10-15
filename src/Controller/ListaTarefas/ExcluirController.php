@@ -3,6 +3,7 @@
 namespace App\Controller\ListaTarefas;
 
 use App\Repository\TarefaRepository;
+use App\Service\ExcluirTarefaService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,15 +15,10 @@ class ExcluirController extends AbstractController
     #[Route("listar/excluir/{id}", name:"excluir_lista")]
     function excluir(
         int $id,
-        EntityManagerInterface $em,
-        TarefaRepository $tarefaRepository,
+       ExcluirTarefaService $excluirTarefaService,
     ) : Response 
     {
-        $tarefa = $tarefaRepository->find($id);
-
-        $em->remove($tarefa);
-        $em->flush();
-
+        $excluirTarefaService->excluirTarefa(id: $id);
         return $this->redirectToRoute("listar");
     }
 }

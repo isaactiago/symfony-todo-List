@@ -2,8 +2,9 @@
 
 namespace App\Controller\ListaTarefas;
 
-use App\Entity\Tarefa;
+
 use App\Repository\TarefaRepository;
+use App\Service\CadastrarTarefaService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,25 +19,20 @@ class CadastrarController extends AbstractController
     {
     }
 
-   
     #[Route("listar/cadastrar", name:"cadastrar")]
-    function cadastrar( Request $request): Response 
+    function cadastrar( Request $request, CadastrarTarefaService $cadastrarTarefaService): Response 
     {
        $inputNome = $request->request->get("nome");
-      
        if($inputNome === "")
        {
             $this->addFlash('danger','campo nao pode ser vazio');
-            return $this->redirectToRoute("app");   
+            return $this->redirectToRoute("listar");   
        }
 
-       $tarefa = New Tarefa();
-       $tarefa->setNomeDaTarefa($inputNome);
-       $tarefa->setStatus(true);
-       $this->tarefaRepository->salvar($tarefa);
+       //logica de cadstra as tarefas
+        $cadastrarTarefaService->adcionarTarefa(nome : $inputNome, status : true);
 
-       return $this->redirectToRoute("listar");
-
+        return $this->redirectToRoute("listar");
     }
 
     #[Route("listar", name:"listar")]
